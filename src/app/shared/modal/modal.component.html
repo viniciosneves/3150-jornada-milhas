@@ -2,9 +2,21 @@
   <h1 mat-dialog-title>Viajante</h1>
   <div mat-dialog-content>
     <div class="selecao-idade">
-      <app-seletor-passageiro label="Adulto" legenda="(Acima de 12 anos)" [formControl]="obterControle('adultos')"/>
-      <app-seletor-passageiro label="Crianças" legenda="(Entre 2 e 11 anos)" [formControl]="obterControle('criancas')"/>
-      <app-seletor-passageiro label="Bebês" legenda="(Até 2 anos)" [formControl]="obterControle('bebes')"/>
+      <app-seletor-passageiro 
+        label="Adulto" 
+        legenda="(Acima de 12 anos)" 
+        [formControl]="obterControle('adultos')"
+      />
+      <app-seletor-passageiro 
+        label="Crianças" 
+        legenda="(Entre 2 e 11 anos)" 
+        [formControl]="obterControle('criancas')"
+      />
+      <app-seletor-passageiro 
+        label="Bebês" 
+        legenda="(Até 2 anos)" 
+        [formControl]="obterControle('bebes')"
+      />
     </div>
     <div class="selecao-categoria">
       <p><strong>Categoria</strong></p>

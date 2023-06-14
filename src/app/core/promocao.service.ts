@@ -14,7 +14,6 @@ export class PromocaoService {
   constructor(
     private http: HttpClient
   ) { 
-    console.log(this.apiUrl)
   }
 
   listar() : Observable<Promocao[]>{

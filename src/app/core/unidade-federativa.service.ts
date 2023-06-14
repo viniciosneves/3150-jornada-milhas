@@ -14,7 +14,6 @@ export class UnidadeFederativaService {
   constructor(
     private http: HttpClient
   ) { 
-    console.log(this.apiUrl)
   }
 
   listar() : Observable<UnidadeFederativa[]> {

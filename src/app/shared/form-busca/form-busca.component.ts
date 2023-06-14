@@ -1,9 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { UnidadeFederativa } from 'src/app/core/interfaces/types';
 import { UnidadeFederativaService } from 'src/app/core/unidade-federativa.service';
+
+export interface FormBuscaValue {
+  somenteIda: boolean | null;
+  adultos: number | null;
+  criancas: number | null;
+  bebes: number | null;
+  tipo: string | null;
+  origem: UnidadeFederativa | null;
+  destino: UnidadeFederativa | null;
+  dataIda: Date | null;
+  dataVolta: Date | null;
+}
+
+interface FormBusca {
+  somenteIda: FormControl<boolean | null>;
+  adultos: FormControl<number | null>;
+  criancas: FormControl<number | null>;
+  bebes: FormControl<number | null>;
+  tipo: FormControl<string | null>;
+  origem: FormControl<UnidadeFederativa | null>;
+  destino: FormControl<UnidadeFederativa | null>;
+  dataIda: FormControl<Date | null>;
+  dataVolta: FormControl<Date | null>;
+}
 
 @Component({
   selector: 'app-form-busca',
@@ -11,8 +35,9 @@ import { UnidadeFederativaService } from 'src/app/core/unidade-federativa.servic
   styleUrls: ['./form-busca.component.scss']
 })
 export class FormBuscaComponent {
+  @Output() aoBuscar = new EventEmitter<Partial<FormBuscaValue>>();
 
-  formBusca: FormGroup;
+  formBusca: FormGroup<FormBusca>;
 
   ufs: UnidadeFederativa[] = []
 
@@ -20,11 +45,10 @@ export class FormBuscaComponent {
 
   constructor(
     public dialog: MatDialog, 
-    private formBuilder: FormBuilder,
     private ufService: UnidadeFederativaService
   ) {
 
-    this.formBusca = this.formBuilder.group({
+    this.formBusca = new FormGroup<FormBusca>({
       somenteIda: new FormControl(false),
       adultos: new FormControl(1),
       criancas: new FormControl(0),
@@ -39,6 +63,10 @@ export class FormBuscaComponent {
       .subscribe(data => {
         this.ufs = data;
       })
+  }
+
+  onSubmit (): void {
+    this.aoBuscar.emit(this.formBusca.value);
   }
 
   trocarOrigemDestino(): void {
@@ -63,17 +91,17 @@ export class FormBuscaComponent {
     let descricao = '';
   
     const adultos = this.formBusca.get('adultos')?.value;
-    if (adultos > 0) {
+    if (adultos && adultos > 0) {
       descricao += `${adultos} adulto${adultos > 1 ? 's' : ''}`;
     }
   
     const criancas = this.formBusca.get('criancas')?.value;
-    if (criancas > 0) {
+    if (criancas && criancas > 0) {
       descricao += `${descricao ? ', ' : ''}${criancas} criança${criancas > 1 ? 's' : ''}`;
     }
   
     const bebes = this.formBusca.get('bebes')?.value;
-    if (bebes > 0) {
+    if (bebes && bebes > 0) {
       descricao += `${descricao ? ', ' : ''}${bebes} bebê${bebes > 1 ? 's' : ''}`;
     }
   

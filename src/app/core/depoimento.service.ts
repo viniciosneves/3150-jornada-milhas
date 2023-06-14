@@ -14,7 +14,6 @@ export class DepoimentoService {
   constructor(
     private http: HttpClient
   ) { 
-    console.log(this.apiUrl)
   }
 
   listar() : Observable<Depoimento[]>{
