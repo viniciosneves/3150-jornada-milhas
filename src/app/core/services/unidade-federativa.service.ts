@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UnidadeFederativa } from './interfaces/types';
+import { UnidadeFederativa } from '../interfaces/types';
 import { HttpClient } from '@angular/common/http';
 import { Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';

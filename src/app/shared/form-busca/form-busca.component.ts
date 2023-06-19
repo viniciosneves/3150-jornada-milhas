@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UnidadeFederativa } from 'src/app/core/interfaces/types';
-import { UnidadeFederativaService } from 'src/app/core/unidade-federativa.service';
+import { UnidadeFederativaService } from 'src/app/core/services/unidade-federativa.service';
 
 export interface FormBuscaValue {
   somenteIda: boolean | null;
