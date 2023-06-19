@@ -1,26 +1,26 @@
 <app-card variant="secondary" class="form-busca">
-  <form [formGroup]="formBusca" (ngSubmit)="onSubmit()">
+  <form [formGroup]="formBuscaService.formBusca" (ngSubmit)="onSubmit()">
     <h2>Passagens</h2>
     <div class="flex-container">
       <mat-button-toggle-group aria-label="Tipo de passagem" formControlName="somenteIda">
         <mat-button-toggle [value]="false">
-          <mat-icon *ngIf="!formBusca.get('somenteIda')?.value">check</mat-icon>
+          <mat-icon *ngIf="!formBuscaService.formBusca.get('somenteIda')?.value">check</mat-icon>
           IDA E VOLTA
         </mat-button-toggle>
         <mat-button-toggle [value]="true">
           SOMENTE IDA
-          <mat-icon *ngIf="formBusca.get('somenteIda')?.value">check</mat-icon>
+          <mat-icon *ngIf="formBuscaService.formBusca.get('somenteIda')?.value">check</mat-icon>
         </mat-button-toggle>
       </mat-button-toggle-group>
 
-      <mat-chip (click)="openDialog()">
+      <mat-chip (click)="formBuscaService.openDialog()">
         <div class="inner">
-          <mat-icon>check</mat-icon> {{getDescricaoPassageiros()}}
+          <mat-icon>check</mat-icon> {{formBuscaService.getDescricaoPassageiros()}}
         </div>
       </mat-chip>
-      <mat-chip (click)="openDialog()">
+      <mat-chip (click)="formBuscaService.openDialog()">
         <div class="inner">
-          <mat-icon>check</mat-icon> {{formBusca.get('tipo')?.value}}
+          <mat-icon>check</mat-icon> {{formBuscaService.formBusca.get('tipo')?.value}}
         </div>
       </mat-chip>
 
@@ -29,16 +29,16 @@
       <app-dropdown-uf 
         label="Origem"
         matPrefix="flight_takeoff"
-        [controle]="obterControle('origem')"
+        [controle]="formBuscaService.obterControle('origem')"
         [options]="ufs"
       />
-      <button (click)="trocarOrigemDestino()" mat-icon-button>
+      <button (click)="formBuscaService.trocarOrigemDestino()" mat-icon-button>
         <mat-icon>sync_alt</mat-icon>
       </button>
       <app-dropdown-uf 
         label="Destino"
         matPrefix="flight_land"
-        [controle]="obterControle('destino')"
+        [controle]="formBuscaService.obterControle('destino')"
         [options]="ufs"
       />
       <mat-form-field class="input-container" appearance="outline">

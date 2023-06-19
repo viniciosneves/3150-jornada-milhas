@@ -5,17 +5,17 @@
       <app-seletor-passageiro 
         label="Adulto" 
         legenda="(Acima de 12 anos)" 
-        [formControl]="obterControle('adultos')"
+        [formControl]="formBuscaService.obterControle('adultos')"
       />
       <app-seletor-passageiro 
         label="Crianças" 
         legenda="(Entre 2 e 11 anos)" 
-        [formControl]="obterControle('criancas')"
+        [formControl]="formBuscaService.obterControle('criancas')"
       />
       <app-seletor-passageiro 
         label="Bebês" 
         legenda="(Até 2 anos)" 
-        [formControl]="obterControle('bebes')"
+        [formControl]="formBuscaService.obterControle('bebes')"
       />
     </div>
     <div class="selecao-categoria">
@@ -24,7 +24,7 @@
         <mat-chip-option 
           *ngFor="let item of tipos" 
           [value]="item" 
-          [selected]="formBusca?.get('tipo')?.value == item"
+          [selected]="formBuscaService.formBusca.get('tipo')?.value == item"
           (selectionChange)="selecionarTipo($event, item)"
         >
           {{ item }}

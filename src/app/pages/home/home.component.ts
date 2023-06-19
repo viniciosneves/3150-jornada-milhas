@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuscaValue } from 'src/app/shared/form-busca/form-busca.component';
+import { FormBuscaValue } from 'src/app/core/interfaces/types';
 
 @Component({
   selector: 'app-home',
